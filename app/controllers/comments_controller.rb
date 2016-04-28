@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-	before action :set_comment, only: [:edit, :update, :destroy]
+	before_action :set_comment, only: [:edit, :update, :destroy]
+  
   def edit
 
   end
@@ -18,7 +19,7 @@ class CommentsController < ApplicationController
   def update
   		respond_to do |format|  #respond is a callback that calls it back after a certain point in it's life cycle
   			if @comment.update(comment_params)
-  				format.html {redirect_to blog_post_path(id: @comment.blog_post_id), notice: "Your comment has been updated."
+  				format.html {redirect_to blog_post_path(id: @comment.blog_post_id), notice: "Your comment has been updated."}
   			else
   				format.html {render :edit}
   			end

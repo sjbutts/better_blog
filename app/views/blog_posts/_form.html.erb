@@ -1,0 +1,25 @@
+<%= form_for(@blog_post) do |f| %>  <!-- pass through what you want the form to be for -->
+	<% if @blog_post.errors.any? %>  <!-- if there is an error, it will display error, if there are more than one they will say "errors" -->
+	<div class="error_explanation">
+		<h2><%= pluralize(@blog_post.errors.count,"error") %> prohibited this blog post from being saved: </h2>
+		<ul>
+			<% @blog_post.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+	<div class="formgroup">
+		<%= f.text_field :title, class: "form-control", placeholder: "What is the title of this blog post?" %>
+	<div class="formgroup">
+		<%= f.text_field :author, class: "form-control", placeholder: "Who are you?" %>
+	<div class="formgroup">
+		<%= f.text_area :blog_entry, class: "form-control", rows: "12", placeholder: "Speak!!" %>
+
+	</div>
+
+	<div class="actions">
+		<%= f.submit "Post", class: "btn btn-primary" %>
+	</div>	
+<% end %>

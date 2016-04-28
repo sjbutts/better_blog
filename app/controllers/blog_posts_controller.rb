@@ -1,5 +1,5 @@
 class BlogPostsController < ApplicationController
-	before_action :set_blog_post, only [:show, :update, :destroy] 
+	before_action :set_blog_post, only: [:show, :update, :destroy] 
 
   def index
   	@blog_posts = BlogPost.all
@@ -13,6 +13,7 @@ class BlogPostsController < ApplicationController
   end
 
   def show
+  	@comment = Comment.new #Give access to the comment view to show on the blog view
   end
 
   def create #Creating the actual blog post. Create method must include a redirect 
@@ -51,5 +52,6 @@ class BlogPostsController < ApplicationController
 
   def set_blog_post  #method to know to grab the right blog post for specific needs (show, destroy, update)
   	@blog_post = BlogPost.find(params[:id]) #@blog_post is  set to the blog post primary key
+  
   end
 end
